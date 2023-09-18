@@ -1708,7 +1708,7 @@ void flecs_query_rematch_tables(
     }
 
     if (world->flags & EcsWorldMeasureFrameTime) {
-        world->info.rematch_time_total += (ecs_ftime_t)ecs_time_measure(&t);
+        world->info.rematch_time_total += ecs_time_measure(&t);
     }
 }
 

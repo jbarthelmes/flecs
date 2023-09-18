@@ -1830,7 +1830,7 @@ ecs_ftime_t flecs_start_measure_frame(
         world->frame_start_time = t;  
 
         /* Keep track of total time passed in world */
-        world->info.world_time_total_raw += (ecs_ftime_t)delta_time;
+        world->info.world_time_total_raw += delta_time;
     }
 
     return (ecs_ftime_t)delta_time;
@@ -1844,7 +1844,7 @@ void flecs_stop_measure_frame(
 
     if (world->flags & EcsWorldMeasureFrameTime) {
         ecs_time_t t = world->frame_start_time;
-        world->info.frame_time_total += (ecs_ftime_t)ecs_time_measure(&t);
+        world->info.frame_time_total += ecs_time_measure(&t);
     }
 }
 

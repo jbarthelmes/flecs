@@ -1379,7 +1379,7 @@ error:
     world->stages[0].defer = defer;
 
     if (measure_time) {
-        world->info.emit_time_total += (ecs_ftime_t)ecs_time_measure(&t);
+        world->info.emit_time_total += ecs_time_measure(&t);
     }
     return;
 }

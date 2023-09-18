@@ -640,7 +640,7 @@ void flecs_run_pipeline(
 
         if (measure_time) {
             /* Don't include merge time in system time */
-            world->info.system_time_total += (ecs_ftime_t)ecs_time_measure(&st);
+            world->info.system_time_total += ecs_time_measure(&st);
         }
 
         if (op_multi_threaded) {

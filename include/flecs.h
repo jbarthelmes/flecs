@@ -1182,13 +1182,13 @@ typedef struct ecs_world_info_t {
     ecs_ftime_t delta_time;           /**< Time passed to or computed by ecs_progress */
     ecs_ftime_t time_scale;           /**< Time scale applied to delta_time */
     ecs_ftime_t target_fps;           /**< Target fps */
-    ecs_ftime_t frame_time_total;     /**< Total time spent processing a frame */
-    ecs_ftime_t system_time_total;    /**< Total time spent in systems */
-    ecs_ftime_t emit_time_total;      /**< Total time spent notifying observers */
-    ecs_ftime_t merge_time_total;     /**< Total time spent in merges */
-    ecs_ftime_t world_time_total;     /**< Time elapsed in simulation */
-    ecs_ftime_t world_time_total_raw; /**< Time elapsed in simulation (no scaling) */
-    ecs_ftime_t rematch_time_total;   /**< Time spent on query rematching */
+    double frame_time_total;     /**< Total time spent processing a frame */
+    double system_time_total;    /**< Total time spent in systems */
+    double emit_time_total;      /**< Total time spent notifying observers */
+    double merge_time_total;     /**< Total time spent in merges */
+    double world_time_total;     /**< Time elapsed in simulation */
+    double world_time_total_raw; /**< Time elapsed in simulation (no scaling) */
+    double rematch_time_total;   /**< Time spent on query rematching */
     
     int64_t frame_count_total;        /**< Total number of frames */
     int64_t merge_count_total;        /**< Total number of merges */
