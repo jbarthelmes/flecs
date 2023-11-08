@@ -72,6 +72,7 @@ void FlecsCoreDocImport(
     ecs_doc_set_brief(world, EcsIsA, "Builtin IsA relationship");
     ecs_doc_set_brief(world, EcsChildOf, "Builtin ChildOf relationship");
     ecs_doc_set_brief(world, EcsDependsOn, "Builtin DependsOn relationship");
+    ecs_doc_set_brief(world, EcsAfter, "Builtin After relationship");
     ecs_doc_set_brief(world, EcsOnAdd, "Builtin OnAdd event");
     ecs_doc_set_brief(world, EcsOnRemove, "Builtin OnRemove event");
     ecs_doc_set_brief(world, EcsOnSet, "Builtin OnSet event");

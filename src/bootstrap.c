@@ -762,6 +762,7 @@ void flecs_bootstrap(
     flecs_bootstrap_tag(world, EcsIsA);
     flecs_bootstrap_tag(world, EcsChildOf);
     flecs_bootstrap_tag(world, EcsDependsOn);
+    flecs_bootstrap_tag(world, EcsAfter);
 
     /* Builtin events */
     flecs_bootstrap_entity(world, EcsOnAdd, "OnAdd", EcsFlecsCore);
@@ -779,6 +780,7 @@ void flecs_bootstrap(
     ecs_add_id(world, EcsChildOf, EcsTag);
     ecs_add_id(world, EcsSlotOf, EcsTag);
     ecs_add_id(world, EcsDependsOn, EcsTag);
+    ecs_add_id(world, EcsAfter, EcsTag);
     ecs_add_id(world, EcsFlatten, EcsTag);
     ecs_add_id(world, EcsDefaultChildComponent, EcsTag);
     ecs_add_id(world, EcsUnion, EcsTag);
@@ -917,11 +919,16 @@ void flecs_bootstrap(
     /* Acyclic/Traversable components */
     ecs_add_id(world, EcsIsA, EcsTraversable);
     ecs_add_id(world, EcsDependsOn, EcsTraversable);
+    ecs_add_id(world, EcsAfter, EcsTraversable);
     ecs_add_id(world, EcsWith, EcsAcyclic);
 
     /* Transitive relationships */
     ecs_add_id(world, EcsIsA, EcsTransitive);
     ecs_add_id(world, EcsIsA, EcsReflexive);
+    ecs_add_id(world, EcsDependsOn, EcsTransitive);
+    ecs_add_id(world, EcsAfter, EcsTransitive);
+
+    ecs_add_pair(world, EcsDependsOn, EcsWith, EcsAfter);
 
     /* Exclusive properties */
     ecs_add_id(world, EcsSlotOf, EcsExclusive);

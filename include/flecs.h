@@ -1459,6 +1459,9 @@ FLECS_API extern const ecs_entity_t EcsIsA;
 /** Used to express dependency relationships */
 FLECS_API extern const ecs_entity_t EcsDependsOn;
 
+/** Used to express ordering relationships */
+FLECS_API extern const ecs_entity_t EcsAfter;
+
 /** Used to express a slot (used with prefab inheritance) */
 FLECS_API extern const ecs_entity_t EcsSlotOf;
 

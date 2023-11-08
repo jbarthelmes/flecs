@@ -739,6 +739,7 @@
 #define ecs_isa(e)       ecs_pair(EcsIsA, e)
 #define ecs_childof(e)   ecs_pair(EcsChildOf, e)
 #define ecs_dependson(e) ecs_pair(EcsDependsOn, e)
+#define ecs_after(e)     ecs_pair(EcsAfter, e)
 
 #define ecs_query_new(world, q_expr)\
     ecs_query_init(world, &(ecs_query_desc_t){\
