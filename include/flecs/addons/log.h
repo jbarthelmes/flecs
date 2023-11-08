@@ -351,6 +351,7 @@ void ecs_parser_errorv_(
 #define ecs_assert(condition, error_code, ...)\
     if (!(condition)) {\
         ecs_assert_log_(error_code, #condition, __FILE__, __LINE__, __VA_ARGS__);\
+        __debugbreak();\
         ecs_os_abort();\
     }\
     assert(condition) /* satisfy compiler/static analyzers */
