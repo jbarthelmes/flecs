@@ -24,31 +24,64 @@ public:
         : BaseClass(&desc->query)
         , m_desc(desc) { }
 
-    /** Specify in which phase the system should run.
+    /** Specify that the system depends on another system or phase.
      *
-     * @param phase The phase.
+     * @param phase The system or phase to depend on.
      */
-    Base& kind(entity_t phase) {
-        flecs::entity_t cur_phase = ecs_get_target(
-            world_v(), m_desc->entity, EcsDependsOn, 0);
-        if (cur_phase) {
-            ecs_remove_id(world_v(), m_desc->entity, ecs_dependson(cur_phase));
-            ecs_remove_id(world_v(), m_desc->entity, cur_phase);
-        }
-        if (phase) {
-            ecs_add_id(world_v(), m_desc->entity, ecs_dependson(phase));
-            ecs_add_id(world_v(), m_desc->entity, phase);
+    Base& depends_on(entity_t other) {
+        if (other) {
+            ecs_add_id(world_v(), m_desc->entity, ecs_dependson(other));
         }
         return *this;
     }
 
-    /** Specify in which phase the system should run.
+    /** Specify that the system depends on another system or phase.
      *
-     * @tparam Phase The phase.
+     * @tparam Phase The system or phase to depend on.
      */
-    template <typename Phase>
-    Base& kind() {
-        return this->kind(_::cpp_type<Phase>::id(world_v()));
+    template <typename Other>
+    Base& depends_on() {
+        return this->depends_on(_::cpp_type<Other>::id(world_v()));
+    }
+
+    /** Specify that the system should run after another system or phase.
+     * 
+     * @param other The system or phase to run after.
+     */
+    Base& after(entity_t other) {
+        if (other) {
+            ecs_add_id(world_v(), m_desc->entity, ecs_after(other));
+        }
+        return *this;
+    }
+
+    /** Specify that the system should run after another system or phase.
+     * 
+     * @tparam Other The system or phase to run after.
+     */
+    template <typename Other>
+    Base& after() {
+        return this->after(_::cpp_type<Other>::id(world_v()));
+    }
+
+    /** Specify that the system should run before another system or phase.
+     * 
+     * @param other The system or phase to run before.
+     */
+    Base& before(entity_t other) {
+        if (other) {
+            ecs_add_id(world_v(), other, ecs_after(m_desc->entity));
+        }
+        return *this;
+    }
+
+    /** Specify that the system should run before another system or phase.
+     * 
+     * @tparam Other The system or phase to run before.
+     */
+    template <typename Other>
+    Base& before() {
+        return this->before(_::cpp_type<Other>::id(world_v()));
     }
 
     /** Specify whether system can run on multiple threads.
